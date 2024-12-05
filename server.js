@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const loadRoutes = require("./framework/routes/routeLoader");
+const generateModels = require("./framework/orm/modelGenerator");
 const ResponseHandler = require("./framework/request/respondHandler");
 const dotenv = require("dotenv");
 
@@ -12,6 +13,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+generateModels();
 loadRoutes(app);
 
 app.use((err, req, res, next) => {
