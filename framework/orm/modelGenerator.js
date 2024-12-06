@@ -10,6 +10,7 @@ function generateModels() {
       const ModelClass = require(path.join(modelsPath, file));
       const modelName = file.replace("Model.js", "");
       sequelize.define(modelName, ModelClass.attributes, ModelClass.options);
+      console.log(">>> " + modelName);
     }
   });
 }
