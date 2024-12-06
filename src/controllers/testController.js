@@ -10,37 +10,43 @@ const TestModel = sequelize.models.test; // Assurez-vous que le modèle TestMode
 const testModelRepository = new GenericRepository(TestModel);
 const generalRepository = new GeneralRepository();
 
+// GET ALL
 router.get("/", async (req, res) => {
   const testModels = await testModelRepository.findAll();
   res.json(ResponseHandler.success(testModels, "all TestModels"));
 });
 
+// GET BY ID
 router.get("/:id", async (req, res) => {
   const testModel = await testModelRepository.findById(req.params.id);
   res.json(ResponseHandler.success(testModel, "TestModel"));
 });
 
+// CREATE
 router.post("/", async (req, res) => {
   const newTestModel = await testModelRepository.create(req.body);
   res.json(ResponseHandler.success(newTestModel, "new TestModel"));
 });
 
+// UPDATE
 router.put("/:id", async (req, res) => {
   const updatedTestModel = await testModelRepository.update(req.params.id, req.body);
   res.json(ResponseHandler.success(updatedTestModel, "updated TestModel"));
 });
 
+// DELETE
 router.delete("/:id", async (req, res) => {
   const result = await testModelRepository.delete(req.params.id);
   res.json(ResponseHandler.success(result, "deleted TestModel"));
 });
 
-router.get("/conditions", async (req, res) => {
-  const testModels = await generalRepository.findWithConditions(TestModel, { is_active: true });
+// GET WITH CONDITIONS
+router.get("/conditions/active/:is_active", async (req, res) => {
+  const testModels = await generalRepository.findWithConditions(TestModel, { is_active: req.params.is_active });
   res.json(ResponseHandler.success(testModels, "TestModels with conditions"));
 });
 
-// raw query
+// RAW QUERY
 router.get("/raw/raw", async (req, res) => {
   const query = "SELECT * FROM test_models WHERE age > :age";
   const replacements = { age: 30 };
