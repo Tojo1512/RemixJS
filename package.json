@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "babel-node server.js"
+    "remix": "babel-node server.js"
   },
   "dependencies": {
     "@babel/cli": "^7.25.9",
