@@ -9,11 +9,9 @@ function loadRoutes(app) {
     if (file.endsWith("Controller.js")) {
       const routeName = file.replace("Controller.js", "").toLowerCase();
       const route = require(path.join(routesPath, file));
-      // verifier que la class n'est pas annotee
-      try {
-        new route();
-        return;
-      } catch (error) {
+      
+      // Vérifier si c'est un router Express valide
+      if (route.stack || route.use || route.get || route.post) {
         console.log(">>> " + file.replace(".js", "") + " : ./" + routeName);
         app.use(`/api/${routeName}`, route);
       }

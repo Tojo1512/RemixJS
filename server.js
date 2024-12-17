@@ -1,10 +1,11 @@
 const express = require("express");
 const cors = require("cors");
-const loadRoutes = require("./framework/routes/routeLoader");
-const generateModels = require("./framework/orm/modelGenerator");
-const ResponseHandler = require("./framework/request/respondHandler");
-const loadAnnotatedRoutes = require("./framework/routes/annotationRouteLoader");
+const loadRoutes = require("./app/routes/routeLoader");
+const generateModels = require("./app/orm/modelGenerator");
+const ResponseHandler = require("./app/request/respondHandler");
+const loadAnnotatedRoutes = require("./app/routes/annotationRouteLoader");
 const dotenv = require("dotenv");
+const isDev = process.env.NODE_ENV === 'development';
 
 dotenv.config();
 
@@ -36,4 +37,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(" ");
   console.log(`> Server started on port ${PORT}`);
+  if (isDev) {
+    console.log("> Running in development mode with auto-reload enabled");
+  }
 });

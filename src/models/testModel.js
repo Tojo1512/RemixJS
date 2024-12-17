@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-const { Column, Table } = require('../../framework/orm/decorators');
+const { Column, Table } = require('../../app/orm/decorators');
 
 @Table({ tableName: 'test_models', timestamps: false })
 class TestModel extends Model {

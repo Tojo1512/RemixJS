@@ -1,5 +1,5 @@
 const express = require("express");
-const { Controller, Get, Post } = require("../../framework/routes/routeDecorators");
+const { Controller, Get, Post } = require("../../app/routes/routeDecorators");
 
 @Controller('/annotated')
 class AnnotatedController {

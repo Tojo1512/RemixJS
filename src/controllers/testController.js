@@ -1,8 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const sequelize = require("../../framework/orm/database");
-const GenericRepository = require("../../framework/orm/GenericRepository");
-const GeneralRepository = require("../../framework/orm/GeneralRepository");
+const sequelize = require("../../app/orm/database");
+const GenericRepository = require("../../app/orm/GenericRepository");
+const GeneralRepository = require("../../app/orm/GeneralRepository");
 const paths = require("../config/paths");
 const ResponseHandler = require(paths.responseHandler);
 
